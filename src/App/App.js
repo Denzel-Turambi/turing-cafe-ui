@@ -16,8 +16,6 @@ function App() {
   console.log(reservations)
 
   function addReservation(newReservation) {
-    console.log('app.newRes', newReservation)
-    console.log('oldREs', reservations)
     setReservations([...reservations, newReservation])
   }
 

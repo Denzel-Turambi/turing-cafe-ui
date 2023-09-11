@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { postReserv } from "../ApiCalls";
 
 function Form({addReservation}) {
   const [name, setName] = useState("")
@@ -15,7 +16,7 @@ function Form({addReservation}) {
         time,
         number
     }
-    console.log('newRes', newReservation)
+    postReserv(newReservation)
     addReservation(newReservation)
     clearInput()
 }
