@@ -57,7 +57,7 @@ function clearInput(){
         value={number}
         onChange={event => setGuestNumber(event.target.value)}
       />
-      <button onClick={event => submitReservation(event)}>Make Reservation</button>
+      <button className="submit-btn" onClick={event => submitReservation(event)}>Make Reservation</button>
     </form>
   )
 }

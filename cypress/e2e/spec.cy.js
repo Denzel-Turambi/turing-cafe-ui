@@ -1,15 +1,3 @@
-// describe('empty spec', () => {
-//   it('passes', () => {
-//     cy.visit('https://example.cypress.io')
-//   })
-// })
-
-// Be sure to intercept and stub any userflows that rely on data from the API
-// Write tests covering what should be displayed on the page when the user first visits.
-// Write a test that checks that when data is put into the form, the value is reflected in that form input.
-// Write a test to check the user flow of adding a new reservation to the page.
-
-
 describe('main dashboard', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:3001/api/v1/reservations', {
@@ -49,5 +37,24 @@ describe('main dashboard', () => {
     cy.get('.reser-container > :nth-child(3)').contains('p', '6:00')
     cy.get('.reser-container > :nth-child(3)').contains('p', 'number of guests: 4')
     cy.get('.reser-container > :nth-child(3)').contains('button', 'cancel')
+  })
+
+  it('should allow user to fill in the form and submit reservation', () => {
+    cy.get('.resy-form').should('be.visible')
+    cy.get('[placeholder="Name"]').type('Denzel')
+    cy.get('[placeholder="Name"]').should('have.value', 'Denzel')
+    cy.get('[placeholder="Date (mm/dd)"]').type('12/21')
+    cy.get('[placeholder="Date (mm/dd)"]').should('have.value', '12/21')
+    cy.get('[placeholder="Time"]').type('5:00')
+    cy.get('[placeholder="Time"]').should('have.value', '5:00')
+    cy.get('[placeholder="Number of guests"]').clear().type('4')
+    cy.get('[placeholder="Number of guests"]').should('have.value', '4')
+    cy.get('.submit-btn').click()
+    cy.get('.reser-container > :nth-child(4)').should('be.visible')
+    cy.get('.reser-container > :nth-child(4)').contains('h3', 'Denzel')
+    cy.get('.reser-container > :nth-child(4)').contains('p', '12/21')
+    cy.get('.reser-container > :nth-child(4)').contains('p', '5:00')
+    cy.get('.reser-container > :nth-child(4)').contains('p', 'number of guests: 4')
+    cy.get('.reser-container > :nth-child(4)').contains('button', 'cancel')
   })
 })
