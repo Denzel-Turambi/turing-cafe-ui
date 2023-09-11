@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import { getData } from '../ApiCalls';
 import { useState, useEffect } from 'react';
+import CardContainer from '../Cards/CardContainer';
 
 function App() {
   const [reservations, setReservations] = useState([]);
@@ -19,6 +20,7 @@ function App() {
       <div className='resy-form'>
       </div>
       <div className='resy-container'>
+        <CardContainer reservations={reservations}/>
       </div>
     </div>
   );
