@@ -1,4 +1,5 @@
 import Card from "./Card";
+import './CardContainer.css'
 
 function CardContainer({reservations}) {
   const reservationCards = reservations.map(reservation => {
